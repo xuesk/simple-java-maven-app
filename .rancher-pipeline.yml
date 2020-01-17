@@ -1,0 +1,15 @@
+stages:
+- name: buid
+  steps:
+  - runScriptConfig:
+      image: 192.168.8.136:30992/maven:v0.4
+      shellScript: mvn install
+- name: 构建
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: test
+      registry: 127.0.0.1:34550
+timeout: 60
+notification: {}
